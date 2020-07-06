@@ -1,8 +1,11 @@
+library(zip)
+library(plyr)
+
 # download zip
-#Url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-#download(Url, "dataset.zip")
-#unzip("dataset.zip")
-#library(plyr)
+Url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download(Url, "dataset.zip")
+unzip("dataset.zip")
+
 
 #read test files
 test_set <- read.table("./UCI HAR Dataset/test/X_test.txt")
@@ -44,6 +47,3 @@ all_datas <- cbind(all_subjects, all_labels, all_sets)
 means_all_datas <- ddply(all_datas, .(subject, activity), 
                          function(x) colMeans(x[3:81]))
 write.table(means_all_datas, "means_all_datas.txt", row.names = FALSE)
-
-
-
